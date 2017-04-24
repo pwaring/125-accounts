@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Invoice</title>
+<style>
+{% include 'css/invoice.css' %}
+</style>
+</head>
+<body>
+<table class="invoice">
+  <tr>
+    <td>
+      <strong>Invoice Number:</strong> {{ invoice.number }}<br>
+      <strong>Issue Date:</strong> {{ invoice.issue_date.strftime('%d/%m/%Y') }}<br>
+      <strong>Due Date:</strong> {% if invoice.due_date is defined %}{{ invoice.due_date.strftime('%d/%m/%Y') }}{% else %}On Receipt{% endif %}<br>
+      <br>
+      <strong>Invoice To:</strong><br>
+      {{ client.name }}<br>
+      {% for address_line in client.address %}
+      {{ address_line }}<br>
+      {% endfor %}
+      {{ client.postcode }}
+    </td>
+    <td style="text-align: right">
+      {{ supplier.name }}<br>
+      {% for address_line in supplier.address %}
+      {{ address_line }}<br>
+      {% endfor %}
+      {{ supplier.postcode }}<br>
+      <br>
+      {{ supplier.phone_number }}<br>
+      {{ supplier.email_address }}
+    </td>
+  </tr>
+</table>
+<br><br>
+<table class="invoice invoice-border">
+  <tr>
+    <th>Description</th>
+    <th>Cost (&pound;)</th>
+  </tr>
+  {% for invoice_item in invoice['items'] %}
+  <tr>
+    <td>{{ invoice_item.description }}</td>
+    <td class="number">{{ "{0:0.2f}".format(invoice_item.cost) }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td class="total">Total Due</td>
+    <td class="number">{{ "{0:0.2f}".format(invoice.total) }}</td>
+  </tr>
+</table>
+<p>Unless otherwise specified, all expenses are recharged at cost.</p>
+<p>Please make cheques payable to: <strong>{{ supplier.name }}</strong></p>
+<p>Bank details:</p>
+<table class="invoice payment-details">
+<tr>
+  <td><strong>Bank Name</strong></td>
+  <td>{{ supplier.bank.name }}</td>
+</tr>
+<tr>
+  <td><strong>Address</strong></td>
+  <td>
+    {% for address_line in supplier.bank.address %}
+    {{ address_line }}<br>
+    {% endfor %}
+    {{ supplier.bank.postcode }}<br>
+  </td>
+</tr>
+<tr>
+  <td><strong>Sort Code</strong></td>
+  <td>{{ supplier.bank.sort_code }}</td>
+</tr>
+<tr>
+  <td><strong>Account Number</strong></td>
+  <td>{{ supplier.bank.account_number }}</td>
+</tr>
+{% if supplier.bank.iban is defined %}
+<tr>
+  <td><strong>IBAN</strong></td>
+  <td>{{ supplier.bank.iban }}</td>
+</tr>
+{% endif %}
+{% if supplier.bank.bic %}
+<tr>
+  <td><strong>BIC</strong></td>
+  <td>{{ supplier.bank.bic }}</td>
+</tr>
+{% endif %}
+</table>
+</body>
+</html>

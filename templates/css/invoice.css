@@ -1,0 +1,40 @@
+@page {
+  margin: 0;
+}
+
+body {
+  font-size: 11pt;
+  margin: 1cm;
+  font-family: Verdana, Arial, sans-serif;
+}
+
+table.invoice {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+table.invoice-border th, table.invoice-border td {
+  border: 1px solid #000;
+}
+
+table.invoice tr th {
+  text-align: center;
+}
+
+table.invoice tr td, table.invoice tr th {
+  padding: 5px 10px;
+}
+
+table.invoice tr td.number {
+  text-align: right;
+}
+
+table.invoice tr, table.payment-details tr {
+  vertical-align: top;
+}
+
+table.invoice tr td.total {
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: right;
+}
