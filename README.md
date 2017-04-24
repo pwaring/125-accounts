@@ -11,3 +11,6 @@ counting.
 
  * Python 3.x (development is done in 3.5.x). Python 2 is not supported and is
  unlikely to work, even with major modifications. This is intentional.
+ * [PyYAML](http://pyyaml.org/)
+ * [Jinja2](http://jinja.pocoo.org/)
+ * [WeasyPrint](http://weasyprint.org/)
