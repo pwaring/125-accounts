@@ -21,10 +21,6 @@ invoice_file = open(data_directory + 'data/invoices/' + invoice_number + '.yaml'
 invoice_data = yaml.safe_load(invoice_file.read())
 invoice_file.close()
 
-# TODO: Validation
-# TODO: Sum of invoice items equals total
-# TODO: Invoice number matches filename
-
 client_file = open(data_directory + 'data/clients/' + invoice_data['client'] + '.yaml')
 client_data = yaml.safe_load(client_file.read())
 client_file.close()
