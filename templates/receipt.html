@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Invoice</title>
+<style>
+{% include 'css/invoice.css' %}
+</style>
+</head>
+<body>
+<table class="invoice">
+  <tr>
+    <td>
+      <strong>Invoice Number:</strong> {{ invoice.number }}<br>
+      <br>
+      <strong>Receipt To:</strong><br>
+      {{ client.name }}<br>
+      {% for address_line in client.address %}
+      {{ address_line }}<br>
+      {% endfor %}
+      {{ client.postcode }}
+    </td>
+    <td style="text-align: right">
+      {{ supplier.name }}<br>
+      {% for address_line in supplier.address %}
+      {{ address_line }}<br>
+      {% endfor %}
+      {{ supplier.postcode }}<br>
+      <br>
+      {{ supplier.phone_number }}<br>
+      {{ supplier.email_address }}
+    </td>
+  </tr>
+</table>
+<br><br>
+<table class="invoice invoice-border">
+  <tr>
+    <th>Description</th>
+    <th>Cost (&pound;)</th>
+  </tr>
+  {% for invoice_item in invoice['items'] %}
+  <tr>
+    <td>{{ invoice_item.description }}</td>
+    <td class="number">{{ "{0:0.2f}".format(invoice_item.cost) }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td class="total">Total Due</td>
+    <td class="number">{{ "{0:0.2f}".format(invoice.total) }}</td>
+  </tr>
+  {% for payment in invoice['payments'] %}
+  <tr>
+    <td>Payment received ({{ payment.type }} - {{ payment.date.strftime('%d/%m/%Y') }})</td>
+    <td class="number">-{{ "{0:0.2f}".format(payment.amount) }}</td>
+  </tr>
+  {% endfor %}
+  <tr>
+    <td class="total">Balance Due</td>
+    <td class="number">{{ "{0:0.2f}".format(invoice.balance) }}</td>
+  </tr>
+</table>
+</body>
+</html>
