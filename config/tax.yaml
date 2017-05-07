@@ -1,0 +1,14 @@
+# Data for tax years
+-
+  start_date: 2017-04-06
+  end_date: 2018-04-05
+  tax_bands:
+    -
+      rate: 0
+      amount: 11500
+    -
+      rate: 20
+      amount: 33500
+    -
+      rate: 40
+      amount: 105000
