@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
 
 import argparse
+import decimal
+import sys
+
 import yaml
 import jinja2
 import weasyprint
+
+decimal.getcontext().prec = 2
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', help='path to data directory', required=True)
@@ -24,6 +29,20 @@ invoice_file.close()
 client_file = open(data_directory + 'data/clients/' + invoice_data['client'] + '.yaml')
 client_data = yaml.safe_load(client_file.read())
 client_file.close()
+
+# Validate all data
+# Invoice items must sum to total
+invoice_items_total = decimal.Decimal(0.00)
+for item in invoice_data['items']:
+    invoice_items_total += decimal.Decimal(item['cost'])
+
+invoice_total = decimal.Decimal(invoice_data['total'])
+
+if invoice_total != invoice_items_total:
+    invoice_total = '{0:f}'.format(invoice_total)
+    invoice_items_total = '{0:f}'.format(invoice_items_total)
+    print("Invoice total (" + invoice_total + ") does not equal sum of items (" + invoice_items_total + ")")
+    sys.exit(1)
 
 template_environment = jinja2.Environment(loader = jinja2.FileSystemLoader('../templates/'))
 template = template_environment.get_template('invoice.html')
