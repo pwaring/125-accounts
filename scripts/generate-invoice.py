@@ -31,6 +31,10 @@ client_data = yaml.safe_load(client_file.read())
 client_file.close()
 
 # Validate all data
+# Invoice number must match filename
+if str(invoice_number) != str(invoice_data['number']):
+    sys.exit("Invoice number argument (" + str(invoice_number) + ") does not match invoice number in data (" + str(invoice_data['number']) + ")")
+
 # Invoice items must sum to total
 invoice_items_total = decimal.Decimal(0.00)
 for item in invoice_data['items']:
