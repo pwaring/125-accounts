@@ -8,7 +8,7 @@ import yaml
 import jinja2
 import weasyprint
 
-decimal.getcontext().prec = 2
+decimal.getcontext().prec = 10
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', help='path to data directory', required=True)
