@@ -40,7 +40,8 @@ invoice_items_total = decimal.Decimal(0.00)
 for item in invoice_data['items']:
     invoice_items_total += decimal.Decimal(item['cost'])
 
-invoice_total = decimal.Decimal(invoice_data['total'])
+invoice_total = decimal.Decimal(0.00)
+invoice_total += decimal.Decimal(invoice_data['total'])
 
 if invoice_total != invoice_items_total:
     invoice_total = '{0:f}'.format(invoice_total)
