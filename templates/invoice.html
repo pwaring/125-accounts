@@ -52,7 +52,9 @@
   </tr>
 </table>
 <p>Unless otherwise specified, all expenses are recharged at cost.</p>
-<p>Please make cheques payable to: <strong>{{ supplier.name }}</strong>.</p>
+{% if client.allow_cheques %}
+  <p>Please make cheques payable to: <strong>{{ supplier.name }}</strong>.</p>
+{% endif %}
 <p>Bank details for electronic payments:</p>
 <table class="invoice payment-details">
 <tr>
