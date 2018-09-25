@@ -16,11 +16,14 @@
       <strong>Due Date:</strong> {% if invoice.due_date is defined %}{{ invoice.due_date.strftime('%d/%m/%Y') }}{% else %}On Receipt{% endif %}<br>
       <br>
       <strong>Invoice To:</strong><br>
-      {{ client.name }}<br>
+      {{ client.name }}
+      {% if client.address %}
+      <br>
       {% for address_line in client.address %}
       {{ address_line }}<br>
       {% endfor %}
       {{ client.postcode }}
+      {% endif %}
     </td>
     <td style="text-align: right">
       {{ supplier.name }}<br>
