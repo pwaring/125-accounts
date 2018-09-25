@@ -4,12 +4,26 @@ import argparse
 import yaml
 import pathlib
 import decimal
+import datetime
+import os
 
 decimal.getcontext().prec = 10
 
 parser = argparse.ArgumentParser()
 parser.add_argument('--data', help='path to data directory', required=True)
 args = parser.parse_args()
+
+script_path = os.path.dirname(os.path.realpath(__file__))
+config_path = script_path + '/../config'
+
+# Configuration
+config = {}
+with open(config_path + '/tax.yaml') as f:
+  config['tax'] = yaml.safe_load(f.read())
+
+# Find current tax year
+today = datetime.date.today()
+config['current_tax'] = next(x for x in config['tax'] if x['start_date'] < today and x['end_date'])
 
 # Data
 total_sales = decimal.Decimal(0.00)
@@ -39,3 +53,5 @@ for invoice_file in invoice_files:
 
 print("Total sales: %.2f" % total_sales)
 print("Total payments: %.2f" % total_payments)
+
+# Calculate tax and national insurance
