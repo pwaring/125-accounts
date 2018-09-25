@@ -5,10 +5,25 @@
   tax_bands:
     -
       rate: 0
-      amount: 11500
+      start_amount: 0
+      end_amount: 11500
     -
       rate: 20
-      amount: 33500
+      start_amount: 11501
+      end_amount: 45000
     -
       rate: 40
-      amount: 105000
+      start_amount: 45001
+      end_amount: 150000
+  ni_bands:
+    -
+      rate: 0
+      start_amount: 0
+      end_amount: 8163
+    -
+      rate: 9
+      start_amount: 8164
+      end_amount: 4500
+    -
+      rate: 2
+      start_amount: 45001
