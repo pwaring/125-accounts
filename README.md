@@ -14,3 +14,7 @@ counting.
  * [PyYAML](http://pyyaml.org/)
  * [Jinja2](http://jinja.pocoo.org/)
  * [WeasyPrint](http://weasyprint.org/)
+
+## Known issues
+
+The tax brackets only go up to £150,000.
