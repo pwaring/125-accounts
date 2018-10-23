@@ -28,7 +28,7 @@
       {{ supplier.postcode }}<br>
       <br>
       {{ supplier.phone_number }}<br>
-      {{ supplier.email_address }}
+      {% if client.supplier_email_address is defined %}{{ client.supplier_email_address }}{% else %}{{ supplier.email_address }}{% endif %}
     </td>
   </tr>
 </table>
