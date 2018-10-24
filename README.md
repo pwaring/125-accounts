@@ -21,3 +21,4 @@ There are a few known limitations with the software as it currently stands.
 
 * The tax brackets only go up to £150,000.
 * The personal allowance (effectively a 0% tax rate) doesn't take into account the tapering for incomes over £100,000.
+* No support for VAT or other taxes.
