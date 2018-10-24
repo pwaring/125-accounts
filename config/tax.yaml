@@ -23,7 +23,35 @@
     -
       rate: 9
       start_amount: 8164
-      end_amount: 4500
+      end_amount: 45000
     -
       rate: 2
       start_amount: 45001
+-
+  start_date: 2018-04-06
+  end_date: 2019-04-05
+  tax_bands:
+    -
+      rate: 0
+      start_amount: 0
+      end_amount: 11850
+    -
+      rate: 20
+      start_amount: 11851
+      end_amount: 46350
+    -
+      rate: 40
+      start_amount: 46351
+      end_amount: 150000
+  ni_bands:
+    -
+      rate: 0
+      start_amount: 0
+      end_amount: 8423
+    -
+      rate: 9
+      start_amount: 8424
+      end_amount: 46350
+    -
+      rate: 2
+      start_amount: 46351
