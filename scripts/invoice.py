@@ -3,6 +3,7 @@
 import argparse
 import decimal
 import sys
+import datetime
 
 import yaml
 import jinja2
@@ -47,6 +48,11 @@ if invoice_total != invoice_items_total:
     invoice_total = '{0:f}'.format(invoice_total)
     invoice_items_total = '{0:f}'.format(invoice_items_total)
     sys.exit("Invoice total (" + invoice_total + ") does not equal sum of items (" + invoice_items_total + ")")
+
+# All validation checks complete, calculate some values which are not always specified
+# Calculate due date from credit terms
+if 'credit_days' in client_data and 'due_date' not in invoice_data:
+    invoice_data['due_date'] = invoice_data['issue_date'] + datetime.timedelta(days = client_data['credit_days'])
 
 template_environment = jinja2.Environment(loader = jinja2.FileSystemLoader('../templates/'))
 template = template_environment.get_template('invoice.html')
