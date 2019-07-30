@@ -14,6 +14,7 @@
       <strong>Invoice Number:</strong> {{ invoice.number }}<br>
       <strong>Issue Date:</strong> {{ invoice.issue_date.strftime('%d/%m/%Y') }}<br>
       <strong>Due Date:</strong> {% if invoice.due_date is defined %}{{ invoice.due_date.strftime('%d/%m/%Y') }}{% else %}On Receipt{% endif %}<br>
+      {% if client.reference is defined %}<strong>Client Reference:</strong> {{ client.reference }}<br>{% endif %}
       <br>
       <strong>Invoice To:</strong><br>
       {{ client.name }}
