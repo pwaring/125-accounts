@@ -19,6 +19,10 @@ args = parser.parse_args()
 data_directory = str(args.data)
 invoice_number = str(args.number)
 
+# Add trailing slash to directory if missing
+if not data_directory.endswith('/'):
+    data_directory += '/'
+
 supplier_file = open(data_directory + 'data/supplier.yaml')
 supplier_data = yaml.safe_load(supplier_file.read())
 supplier_file.close()
