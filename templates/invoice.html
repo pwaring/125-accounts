@@ -61,6 +61,10 @@
 {% endif %}
 <p>Bank details for electronic payments:</p>
 <table class="invoice payment-details">
+  <tr>
+    <td><strong>Account Name</strong></td>
+    <td>{{ supplier.bank.account_name }}</td>
+  </tr>
 <tr>
   <td><strong>Bank Name</strong></td>
   <td>{{ supplier.bank.name }}</td>
