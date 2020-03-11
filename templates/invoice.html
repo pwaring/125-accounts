@@ -65,38 +65,38 @@
     <td><strong>Account Name</strong></td>
     <td>{{ supplier.bank.account_name }}</td>
   </tr>
-<tr>
-  <td><strong>Bank</strong></td>
-  <td>{{ supplier.bank.name }}</td>
-</tr>
-<tr>
-  <td><strong>Address</strong></td>
-  <td>
-    {% for address_line in supplier.bank.address %}
-    {{ address_line }}<br>
-    {% endfor %}
-    {{ supplier.bank.postcode }}<br>
-  </td>
-</tr>
-<tr>
-  <td><strong>Sort Code</strong></td>
-  <td>{{ supplier.bank.sort_code }}</td>
-</tr>
-<tr>
-  <td><strong>Account Number</strong></td>
-  <td>{{ supplier.bank.account_number }}</td>
-</tr>
-{% if supplier.bank.iban is defined %}
-<tr>
-  <td><strong>IBAN</strong></td>
-  <td>{{ supplier.bank.iban }}</td>
-</tr>
-{% endif %}
-{% if supplier.bank.bic %}
-<tr>
-  <td><strong>BIC</strong></td>
-  <td>{{ supplier.bank.bic }}</td>
-</tr>
+  <tr>
+    <td><strong>Bank</strong></td>
+    <td>{{ supplier.bank.name }}</td>
+  </tr>
+  <tr>
+    <td><strong>Address</strong></td>
+    <td>
+      {% for address_line in supplier.bank.address %}
+      {{ address_line }}<br>
+      {% endfor %}
+      {{ supplier.bank.postcode }}<br>
+    </td>
+  </tr>
+  <tr>
+    <td><strong>Sort Code</strong></td>
+    <td>{{ supplier.bank.sort_code }}</td>
+  </tr>
+  <tr>
+    <td><strong>Account Number</strong></td>
+    <td>{{ supplier.bank.account_number }}</td>
+  </tr>
+  {% if supplier.bank.iban is defined %}
+  <tr>
+    <td><strong>IBAN</strong></td>
+    <td>{{ supplier.bank.iban }}</td>
+  </tr>
+  {% endif %}
+  {% if supplier.bank.bic %}
+  <tr>
+    <td><strong>BIC</strong></td>
+    <td>{{ supplier.bank.bic }}</td>
+  </tr>
 {% endif %}
 </table>
 </body>
